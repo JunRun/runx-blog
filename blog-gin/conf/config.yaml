@@ -1,0 +1,5 @@
+database:
+  user: postgers
+  password: 123456
+  host: 127.0.0.1
+  dbname: blog

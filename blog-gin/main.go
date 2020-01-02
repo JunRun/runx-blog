@@ -6,9 +6,15 @@
  */
 package main
 
-import "github.com/JunRun/blog-gin/router"
+import (
+	"fmt"
+	_ "github.com/JunRun/blog-gin/model"
+	"github.com/JunRun/blog-gin/router"
+	_ "github.com/JunRun/blog-gin/util"
+)
 
 func main() {
+	fmt.Println("Start----")
 	_ = router.InitRouter()
 
 }
