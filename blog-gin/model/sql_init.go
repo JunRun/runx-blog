@@ -35,3 +35,10 @@ func GetConnect() *gorm.DB {
 	})
 	return db
 }
+
+func init() {
+	db := GetConnect()
+	if !db.HasTable(&UserModel{}) {
+		db.CreateTable(&UserModel{})
+	}
+}

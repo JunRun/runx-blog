@@ -23,13 +23,13 @@ var (
 )
 
 func init() {
-	file, err := ioutil.ReadFile("./conf/config.yaml")
+	file, err := ioutil.ReadFile("./blog-gin/conf/config.yml")
 	if err != nil {
 		fmt.Println("配置文件读取失败!")
 		panic(err)
 	}
 	Config = &Conf{}
-	err = yaml.Unmarshal(file, Config.Data)
+	err = yaml.Unmarshal(file, &Config.Data)
 	if err != nil {
 		fmt.Println("解析配置文件失败")
 		panic(err)

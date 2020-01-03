@@ -16,6 +16,10 @@ func InitRouter() *gin.Engine {
 	user := r.Group("/user")
 	{
 		user.GET("/hello", controller.Hello)
+		//用户登录接口
+		user.POST("/login", controller.Login)
+		//
+		user.POST("/register", controller.UserRegister)
 	}
 
 	r.Run(":9091")
