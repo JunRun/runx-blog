@@ -24,7 +24,7 @@ func Hello(c *gin.Context) {
 
 func Login(c *gin.Context) {
 	user := &model.UserModel{
-		Name:     c.Query("name"),
+		Name:     c.GetString("username"),
 		Password: c.Query("password"),
 		Address:  "",
 		Auth:     "admin",
@@ -39,7 +39,7 @@ func Login(c *gin.Context) {
 func UserRegister(c *gin.Context) {
 	user := &model.UserModel{
 		Id:       0,
-		Name:     c.Query("name"),
+		Name:     c.Query("username"),
 		Password: c.Query("password"),
 		Address:  "",
 		Auth:     "",

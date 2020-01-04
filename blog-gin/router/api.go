@@ -17,6 +17,7 @@ func InitRouter() *gin.Engine {
 	//使用允许跨域的中间件
 	r.Use(middleware.CorsMiddleware())
 
+	r.POST("/token", controller.GetToken)
 	user := r.Group("/user")
 	{
 		user.GET("/hello", controller.Hello)
