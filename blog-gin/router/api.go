@@ -8,11 +8,15 @@ package router
 
 import (
 	"github.com/JunRun/blog-gin/controller"
+	"github.com/JunRun/blog-gin/middleware"
 	"github.com/gin-gonic/gin"
 )
 
 func InitRouter() *gin.Engine {
 	r := gin.New()
+	//使用允许跨域的中间件
+	r.Use(middleware.CorsMiddleware())
+
 	user := r.Group("/user")
 	{
 		user.GET("/hello", controller.Hello)
