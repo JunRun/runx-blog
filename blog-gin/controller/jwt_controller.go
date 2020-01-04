@@ -26,6 +26,7 @@ func GetToken(c *gin.Context) {
 		return
 	}
 	hmacSampleSecret := []byte("my_secret_ky")
+	//进行 算法加密
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
 		"username": params.Username,
 		"password": params.Password,

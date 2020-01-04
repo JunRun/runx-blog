@@ -7,6 +7,7 @@
 package controller
 
 import (
+	"fmt"
 	"github.com/JunRun/blog-gin/model"
 	"github.com/JunRun/blog-gin/service"
 	"github.com/gin-gonic/gin"
@@ -23,12 +24,13 @@ func Hello(c *gin.Context) {
 }
 
 func Login(c *gin.Context) {
-	user := &model.UserModel{
-		Name:     c.GetString("username"),
-		Password: c.Query("password"),
-		Address:  "",
-		Auth:     "admin",
+	var user = &model.UserModel{}
+
+	if err := c.BindJSON(user); err != nil {
+		fmt.Println(err.Error())
+		return
 	}
+
 	if err := service.UserService.Login(user); err != nil {
 		c.JSON(http.StatusFound, err.Error())
 	} else {
@@ -39,7 +41,7 @@ func Login(c *gin.Context) {
 func UserRegister(c *gin.Context) {
 	user := &model.UserModel{
 		Id:       0,
-		Name:     c.Query("username"),
+		UserName: c.Query("username"),
 		Password: c.Query("password"),
 		Address:  "",
 		Auth:     "",

@@ -1,6 +1,6 @@
 /**
  *
- * @Description:
+ * @Description: 允许跨域中间件设置
  * @Version: 1.0.0
  * @Date: 2020-01-04 09:58
  */
