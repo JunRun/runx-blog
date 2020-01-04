@@ -8,7 +8,6 @@ import locale from 'element-ui/lib/locale/lang/en' // lang i18n
 import '@/styles/index.scss' // global css
 import '@/icons' // icon
 import '@/permission' // permission control
-
 Vue.config.productionTip = false
 
 Vue.use(ElementUI, { locale })
