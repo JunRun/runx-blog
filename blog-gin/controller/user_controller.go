@@ -7,34 +7,31 @@
 package controller
 
 import (
-	"fmt"
 	"github.com/JunRun/blog-gin/model"
+	"github.com/JunRun/blog-gin/result"
 	"github.com/JunRun/blog-gin/service"
 	"github.com/gin-gonic/gin"
-	"net/http"
 )
 
 type UserController struct {
 }
 
 func Hello(c *gin.Context) {
-	c.JSON(200, gin.H{
-		"message": "hello",
-	})
+	result.Success(c, "hello world")
 }
 
 func Login(c *gin.Context) {
 	var user = &model.UserModel{}
 
 	if err := c.BindJSON(user); err != nil {
-		fmt.Println(err.Error())
+		result.Error(c, err.Error())
 		return
 	}
 
-	if err := service.UserService.Login(user); err != nil {
-		c.JSON(http.StatusFound, err.Error())
+	if err := service.UserService.Login(c, user); err != nil {
+		result.Error(c, err.Error())
 	} else {
-		c.JSON(http.StatusOK, "登录成功")
+		result.Success(c, user)
 	}
 }
 
@@ -47,8 +44,8 @@ func UserRegister(c *gin.Context) {
 		Auth:     "",
 	}
 	if err := service.UserService.Register(user); err != nil {
-		c.JSON(http.StatusForbidden, err.Error())
+		result.Error(c, err.Error())
 	} else {
-		c.JSON(http.StatusOK, "注册成功")
+		result.Success(c, "注册成功")
 	}
 }

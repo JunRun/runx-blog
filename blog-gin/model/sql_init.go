@@ -8,17 +8,17 @@ package model
 
 import (
 	"fmt"
-	"github.com/JunRun/blog-gin/util"
+	"github.com/JunRun/blog-gin/utils"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"sync"
 )
 
 var (
-	host     = util.Config.GetString("database.host")
-	user     = util.Config.GetString("database.user")
-	password = util.Config.GetString("database.password")
-	dbname   = util.Config.GetString("database.dbname")
+	host     = utils.Config.GetString("database.host")
+	user     = utils.Config.GetString("database.user")
+	password = utils.Config.GetString("database.password")
+	dbname   = utils.Config.GetString("database.dbname")
 )
 var (
 	err    error

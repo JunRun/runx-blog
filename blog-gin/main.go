@@ -10,7 +10,7 @@ import (
 	"fmt"
 	_ "github.com/JunRun/blog-gin/model"
 	"github.com/JunRun/blog-gin/router"
-	_ "github.com/JunRun/blog-gin/util"
+	_ "github.com/JunRun/blog-gin/utils"
 )
 
 func main() {

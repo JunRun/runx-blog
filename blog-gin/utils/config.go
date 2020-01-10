@@ -4,7 +4,7 @@
  * @Version: 1.0.0
  * @Date: 2020-01-02 10:51
  */
-package util
+package utils
 
 import (
 	"fmt"

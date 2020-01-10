@@ -1,2 +1,3 @@
 # Created by .ignore support plugin (hsz.mobi)
 ./blog-gin/test
+/blog-gin/test/demo_test.go

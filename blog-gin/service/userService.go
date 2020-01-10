@@ -6,23 +6,42 @@
  */
 package service
 
-import "github.com/JunRun/blog-gin/model"
+import (
+	"github.com/JunRun/blog-gin/model"
+	"github.com/JunRun/blog-gin/utils"
+	"github.com/gin-gonic/gin"
+	"net/http"
+	"time"
+)
 
 type userService struct {
 }
 
 var UserService *userService
 
-func (u *userService) Login(user *model.UserModel) error {
-	//用户密码加密处理
-	user.Password = user.Password + "sda"
-	err := user.Login()
+func (u *userService) Login(c *gin.Context, user *model.UserModel) error {
 
-	if err != nil {
+	if err := user.Login(); err != nil {
 		return err
 	} else {
+		cookie := &http.Cookie{
+			Name:       "session_id",
+			Value:      utils.GenerateToken(user.UserName, user.Password),
+			Path:       "/",
+			Domain:     "",
+			Expires:    time.Time{},
+			RawExpires: "",
+			MaxAge:     0,
+			Secure:     false,
+			HttpOnly:   true,
+			SameSite:   0,
+			Raw:        "",
+			Unparsed:   nil,
+		}
+		http.SetCookie(c.Writer, cookie)
 		return nil
 	}
+
 }
 
 func (u *userService) Register(user *model.UserModel) error {

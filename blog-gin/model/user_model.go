@@ -22,8 +22,9 @@ type UserModel struct {
 func (u *UserModel) Login() error {
 	g := GetConnect()
 	g.Where("name = ? AND password = ?", u.UserName, u.Password).First(&u)
+	fmt.Println("登录检测--用户", u.UserName)
 	if u.Id != 0 {
-		fmt.Println("登录检测--用户", u.UserName)
+
 		return nil
 	} else {
 		return errors.New("此账号或密码不存在")
