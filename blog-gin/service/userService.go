@@ -10,8 +10,6 @@ import (
 	"github.com/JunRun/blog-gin/model"
 	"github.com/JunRun/blog-gin/utils"
 	"github.com/gin-gonic/gin"
-	"net/http"
-	"time"
 )
 
 type userService struct {
@@ -24,28 +22,16 @@ func (u *userService) Login(c *gin.Context, user *model.UserModel) error {
 	if err := user.Login(); err != nil {
 		return err
 	} else {
-		cookie := &http.Cookie{
-			Name:       "session_id",
-			Value:      utils.GenerateToken(user.UserName, user.Password),
-			Path:       "/",
-			Domain:     "",
-			Expires:    time.Time{},
-			RawExpires: "",
-			MaxAge:     0,
-			Secure:     false,
-			HttpOnly:   true,
-			SameSite:   0,
-			Raw:        "",
-			Unparsed:   nil,
-		}
-		http.SetCookie(c.Writer, cookie)
+		token := utils.GenerateToken(user.UserName, user.Password)
+		user.Token = token
 		return nil
 	}
 
 }
 
 func (u *userService) Register(user *model.UserModel) error {
-	user.Password = user.Password + "sda"
+	//密码加密
+	user.Password = utils.MD5Encryption(user.Password)
 	if err := user.Register(); err != nil {
 		return err
 	} else {

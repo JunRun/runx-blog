@@ -40,8 +40,6 @@ func UserRegister(c *gin.Context) {
 		Id:       0,
 		UserName: c.Query("username"),
 		Password: c.Query("password"),
-		Address:  "",
-		Auth:     "",
 	}
 	if err := service.UserService.Register(user); err != nil {
 		result.Error(c, err.Error())

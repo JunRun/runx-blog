@@ -21,7 +21,7 @@ func InitRouter() *gin.Engine {
 	//注册接口
 	r.POST("/register", controller.UserRegister)
 
-	//使用群组中间件r，实现鉴权认证
+	//使用群组中间件，实现鉴权认证
 	user := r.Group("/user", middleware.AuthMiddleware(nil))
 	{
 		user.GET("/hello", controller.Hello)

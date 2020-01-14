@@ -9,6 +9,7 @@ package model
 import (
 	"errors"
 	"fmt"
+	"github.com/JunRun/blog-gin/utils"
 )
 
 type UserModel struct {
@@ -16,15 +17,16 @@ type UserModel struct {
 	UserName string `json:"username" gorm:"size:255;index"`
 	Password string `json:"password" gorm:"size:36"`
 	Address  string `json:"address"`
-	Auth     string `json:"auth"`
+	Token    string `json:"token"`
 }
 
 func (u *UserModel) Login() error {
 	g := GetConnect()
-	g.Where("name = ? AND password = ?", u.UserName, u.Password).First(&u)
+
+	g.Where("name = ? AND password = ?", u.UserName, utils.MD5Encryption(u.Password)).First(&u)
 	fmt.Println("登录检测--用户", u.UserName)
 	if u.Id != 0 {
-
+		fmt.Println("用户名密码")
 		return nil
 	} else {
 		return errors.New("此账号或密码不存在")
