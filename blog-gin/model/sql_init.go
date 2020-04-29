@@ -8,10 +8,12 @@ package model
 
 import (
 	"fmt"
-	"github.com/JunRun/blog-gin/utils"
+	"sync"
+
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
-	"sync"
+
+	"github.com/JunRun/blog-gin/utils"
 )
 
 var (
@@ -28,11 +30,14 @@ var (
 )
 
 func GetConnect() *gorm.DB {
-	sy.Do(func() {
-		if db, err = gorm.Open("postgres", config); err != nil {
-			panic(err)
-		}
-	})
+
+	if db == nil {
+		sy.Do(func() {
+			if db, err = gorm.Open("postgres", config); err != nil {
+				panic(err)
+			}
+		})
+	}
 	return db
 }
 

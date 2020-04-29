@@ -20,7 +20,9 @@ func AuthMiddleware(e *casbin.Enforcer) gin.HandlerFunc {
 		if len(token) == 0 {
 			c.Abort()
 			result.AuthError(c, "token 为空")
+			return
 		}
+
 		//解析 token 判断是否存在
 		_, err := utils.ParsingToken(token)
 		if err != nil {

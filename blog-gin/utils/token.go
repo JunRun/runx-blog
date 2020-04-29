@@ -7,9 +7,9 @@
 package utils
 
 import (
-	"fmt"
-	"github.com/dgrijalva/jwt-go"
 	"time"
+
+	"github.com/dgrijalva/jwt-go"
 )
 
 /**
@@ -27,7 +27,7 @@ func GenerateToken(name string, password string) string {
 
 		return " "
 	} else {
-		fmt.Println(tokenString)
+
 		return tokenString
 	}
 

@@ -23,7 +23,7 @@ var (
 )
 
 func init() {
-	file, err := ioutil.ReadFile("./blog-gin/conf/config.yml")
+	file, err := ioutil.ReadFile("./conf/config.yml")
 	if err != nil {
 		fmt.Println("配置文件读取失败!")
 		panic(err)
