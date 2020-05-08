@@ -30,6 +30,8 @@ func (u *userService) Login(c *gin.Context, user *model.UserModel) error {
 }
 
 func (u *userService) Register(user *model.UserModel) error {
+
+	utils.RedisClient.Get("id").Result()
 	//密码加密
 	user.Password = utils.MD5Encryption(user.Password)
 	if err := user.Register(); err != nil {
