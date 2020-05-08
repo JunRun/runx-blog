@@ -7,6 +7,8 @@
 package utils
 
 import (
+	"fmt"
+
 	"github.com/go-redis/redis"
 
 	"github.com/JunRun/blog-gin/conf"
@@ -16,22 +18,18 @@ const (
 	CACHE = 1
 )
 
-type RedisPool struct {
-}
+var RedisClient *redis.Client
 
-func (r *RedisPool) Get() {
-
-}
-func NewRedis() error {
-	client := redis.NewClient(&redis.Options{
-		Addr:     conf.Config.GetString("redis.host"),
-		Password: "",
-		DB:       conf.Config.GetInt("DB"),
+func NewRedis() {
+	RedisClient = redis.NewClient(&redis.Options{
+		Addr:        conf.Config.GetString("redis.host"),
+		Password:    conf.Config.GetString("redis.password"),
+		DB:          conf.Config.GetInt("redis.DB"),
+		IdleTimeout: conf.Config.GetDuration("redis.IdleTimeout"),
 	})
-	if _, err := client.Ping().Result(); err != nil {
-		return err
+	if _, err := RedisClient.Ping().Result(); err != nil {
+		fmt.Println("连接redis 错误 ", err)
 	}
-	return nil
 	//RedisConn := &redis.Pool{
 	//}
 }

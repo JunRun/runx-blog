@@ -7,9 +7,10 @@
 package router
 
 import (
+	"github.com/gin-gonic/gin"
+
 	"github.com/JunRun/blog-gin/controller"
 	"github.com/JunRun/blog-gin/middleware"
-	"github.com/gin-gonic/gin"
 )
 
 func InitRouter() *gin.Engine {
