@@ -17,10 +17,10 @@ import (
 )
 
 var (
-	host     = conf.Config.Get("database.host")
-	user     = conf.Config.Get("database.user")
-	password = conf.Config.Get("database.password")
-	dbname   = conf.Config.Get("database.dbname")
+	host     = conf.Config.GetString("database.host")
+	user     = conf.Config.GetString("database.user")
+	password = conf.Config.GetString("database.password")
+	dbname   = conf.Config.GetString("database.dbname")
 )
 var (
 	err    error
@@ -37,7 +37,10 @@ func GetConnect() *gorm.DB {
 				panic(err)
 			}
 		})
+		db.DB().SetMaxOpenConns(100)
+		db.DB().SetMaxIdleConns(100)
 	}
+
 	return db
 }
 

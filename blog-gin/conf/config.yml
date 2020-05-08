@@ -7,6 +7,5 @@ redis:
   host: 127.0.0.1:6379
   password:
   maxIdle: 30
-  idleTimeOut: 200
+  idleTimeOut: 2000
   DB: 0
-  

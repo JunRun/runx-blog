@@ -38,12 +38,13 @@ func (u *UserModel) Register() error {
 	db := GetConnect()
 	//判断用户名是否重复
 	user := UserModel{}
-	db.Where("name = ?", u.UserName).First(&user)
+	db.Where("user_name = ?", u.UserName).First(&user)
 	if user.Id != 0 {
 		return errors.New("用户名重复")
 	}
 	db.Create(&u)
 	if u.Id != 0 {
+
 		return nil
 	} else {
 		return errors.New("注册用户失败")
