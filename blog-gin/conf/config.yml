@@ -3,3 +3,9 @@ database:
   password: 123456
   host: 127.0.0.1
   dbname: blog
+redis:
+  host: 127.0.0.1
+  password:
+  maxIdle: 30
+  idleTimeOut: 200
+  

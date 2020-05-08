@@ -13,14 +13,14 @@ import (
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 
-	"github.com/JunRun/blog-gin/utils"
+	"github.com/JunRun/blog-gin/conf"
 )
 
 var (
-	host     = utils.Config.GetString("database.host")
-	user     = utils.Config.GetString("database.user")
-	password = utils.Config.GetString("database.password")
-	dbname   = utils.Config.GetString("database.dbname")
+	host     = conf.Config.Get("database.host")
+	user     = conf.Config.Get("database.user")
+	password = conf.Config.Get("database.password")
+	dbname   = conf.Config.Get("database.dbname")
 )
 var (
 	err    error

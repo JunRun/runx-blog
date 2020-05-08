@@ -8,10 +8,11 @@ package utils
 
 import (
 	"fmt"
-	"gopkg.in/yaml.v2"
 	"io/ioutil"
 	"strconv"
 	"strings"
+
+	"gopkg.in/yaml.v2"
 )
 
 type Conf struct {

@@ -8,6 +8,8 @@ package main
 
 import (
 	"fmt"
+
+	_ "github.com/JunRun/blog-gin/conf"
 	_ "github.com/JunRun/blog-gin/model"
 	"github.com/JunRun/blog-gin/router"
 	_ "github.com/JunRun/blog-gin/utils"
